@@ -7,5 +7,6 @@ venv
 .idea/modules.xml
 .idea/vcs.xml
 .DS_Store
-loducode_utils/locale/en/LC_MESSAGES/django.mo
-loducode_utils/locale/es/LC_MESSAGES/django.mo
+build/
+dist/
+loducode_utils.egg-info/
