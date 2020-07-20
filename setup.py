@@ -13,7 +13,7 @@ setup(
     author='Cristian Dulcey',
     author_email='cristian@loducode.com',
     url='https://github.com/UnTalDulcey/loducode_utils',  # use the URL to the github repo
-    download_url='https://github.com/UnTalDulcey/loducode_utils/tarball/0.1',
+    download_url='https://github.com/UnTalDulcey/loducode_utils/tarball/0.0.3',
     keywords=['utils', 'loducode_utils', 'loducode'],
     classifiers=[],
     install_requires=[i.strip() for i in open("requirements.txt").readlines()],
