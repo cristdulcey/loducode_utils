@@ -1,0 +1,11 @@
+# Created by .ignore support plugin (hsz.mobi)
+venv
+.idea/.gitignore
+.idea/inspectionProfiles/
+.idea/loducode_utils.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.DS_Store
+loducode_utils/locale/en/LC_MESSAGES/django.mo
+loducode_utils/locale/es/LC_MESSAGES/django.mo

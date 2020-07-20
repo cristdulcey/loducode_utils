@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-19 20:44-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Service to log in using token, with username and password"
+msgstr "Servicio para iniciar sesión mediante token, con usuario y contraseña"
+
+msgid "has closed session correctly"
+msgstr "ha cerrado la sesión correctamente"
+
+msgid "Service to log out."
+msgstr "Servicio para cerrar sesión."
+
+msgid "Your new password is:"
+msgstr "Tu nueva contraseña es:"
+
+msgid "the new password has been send to Email."
+msgstr "la nueva contraseña ha sido enviada a correo electrónico."
+
+msgid "Service to forget password. ** {\"username\": \"user1\"} **"
+msgstr "Servicio para olvidar contraseña. ** {\"username\": \"user1\"} **"
+
+msgid "creation date"
+msgstr "Fecha de creación"
+
+msgid "date when the object was created"
+msgstr "fecha de creación del objeto."
+
+msgid "update date"
+msgstr "fecha de actualización"
+
+msgid "date when the object was modified"
+msgstr "fecha en que se modificó el objeto"
+
+msgid "creation user"
+msgstr "usuario de creación"
+
+msgid "user who created the object"
+msgstr "usuario que creó el objeto"
+
+msgid "update user"
+msgstr "actualizar usuario"
+
+msgid "user who performed the update"
+msgstr "usuario que realizó la actualización"
+
+msgid "name"
+msgstr "nombre"
+
+msgid "state"
+msgstr "estado"
+
+msgid "city"
+msgstr "ciudad"
+
+msgid "cities"
+msgstr "ciudades"
