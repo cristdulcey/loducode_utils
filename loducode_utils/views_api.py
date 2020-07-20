@@ -105,13 +105,13 @@ class ForgetPasswordView(APIView):
                 else:
                     first = user_detail.first_name
             if first:
-                message = "*{FIRST}* {MESSAGE} *{NEW}*".format(
+                message = "{FIRST} {MESSAGE} {NEW}".format(
                     MESSAGE=_("Your new password is:"),
                     NEW=_(new_password),
                     FIRST=first
                 )
             else:
-                message = "{MESSAGE} *{NEW}*".format(
+                message = "{MESSAGE} {NEW}".format(
                     MESSAGE=_("Your new password is:"),
                     NEW=_(new_password)
                 )
