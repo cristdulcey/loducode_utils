@@ -4,7 +4,7 @@ Basic components for the development of loducode s.a.s.
 
 ### install
 
-`pip install loducode_utils==0.0.3`
+`pip install loducode_utils==0.0.4`
 
 ## functionalities
 
