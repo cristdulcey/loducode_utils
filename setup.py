@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setup(
     name='loducode_utils',
     packages=['loducode_utils'],  # this must be the same as the name above
-    version='0.0.1',
+    version='0.0.2',
     description='Basic components for the development of loducode s.a.s.',
     long_description=long_description,
     long_description_content_type="text/markdown",
