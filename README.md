@@ -4,7 +4,7 @@ Basic components for the development of loducode s.a.s.
 
 ### install
 
-`pip install loducode_utils==0.0.4`
+`pip install loducode_utils==0.0.6`
 
 ## functionalities
 
@@ -28,3 +28,10 @@ Basic components for the development of loducode s.a.s.
     - LogoutView
     - ForgetPasswordView
 
+####Version 0.0.6
+model city in admin fixxed register
+
+####Version 0.0.5
+
+- model city in admin
+- migrations initials city
