@@ -4,7 +4,7 @@ Basic components for the development of loducode s.a.s.
 
 ### install
 
-`pip install loducode_utils==0.0.7`
+`pip install loducode_utils==0.0.10`
 
 ## functionalities
 
@@ -32,6 +32,17 @@ Basic components for the development of loducode s.a.s.
 
 - python setup.py sdist bdist_wheel
 - twine upload --repository pypi dist/loducode_utils-0.0.7*
+
+entrar a la carpeta loducode_utils y correr
+- django-admin makemessages
+- django-admin compilemessages
+
+####Version 0.0.10
+- add locale es-en
+- bug _ translate apps.py
+
+####Version 0.0.9
+- add apps.py
 
 ####Version 0.0.8
 - change translation model payment record

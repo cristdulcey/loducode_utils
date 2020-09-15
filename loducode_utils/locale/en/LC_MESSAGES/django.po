@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-19 23:07-0500\n"
+"POT-Creation-Date: 2020-09-15 16:10-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,51 +18,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: models.py:19
+#: apps.py:6
+msgid "utils"
+msgstr "Utils"
+
+#: models.py:21
 msgid "creation date"
 msgstr "creation date"
 
-#: models.py:20
+#: models.py:22
 msgid "date when the object was created"
 msgstr "date when the object was created"
 
-#: models.py:25
+#: models.py:27
 msgid "update date"
 msgstr "update date"
 
-#: models.py:26
+#: models.py:28
 msgid "date when the object was modified"
 msgstr "date when the object was modified"
 
-#: models.py:32
+#: models.py:34
 msgid "creation user"
 msgstr "creation user"
 
-#: models.py:33
+#: models.py:35
 msgid "user who created the object"
 msgstr "user who created the object"
 
-#: models.py:39
+#: models.py:41
 msgid "update user"
 msgstr "update user"
 
-#: models.py:40
+#: models.py:42
 msgid "user who performed the update"
 msgstr "user who performed the update"
 
-#: models.py:93
+#: models.py:95
 msgid "name"
 msgstr "name"
 
-#: models.py:94
+#: models.py:96
 msgid "state"
 msgstr "state"
 
-#: models.py:97
+#: models.py:99
 msgid "city"
 msgstr "city"
 
-#: models.py:98
+#: models.py:100
 msgid "cities"
 msgstr "cities"
 
