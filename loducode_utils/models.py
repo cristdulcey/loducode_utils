@@ -1,3 +1,5 @@
+import uuid
+
 from crum import get_current_user
 from django.contrib.auth.models import User
 from django.db import models
@@ -99,3 +101,62 @@ class City(Audit):
 
     def __str__(self):
         return f'{self.name} - {self.state}'
+
+
+class PaymentRecord(Audit):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    x_cust_id_cliente = models.CharField(max_length=250, blank=True, null=True)
+    x_description = models.CharField(max_length=250, blank=True, null=True)
+    x_amount_ok = models.CharField(max_length=250, blank=True, null=True)
+    x_id_invoice = models.CharField(max_length=250, blank=True, null=True)
+    x_amount_base = models.CharField(max_length=250, blank=True, null=True)
+    x_tax = models.CharField(max_length=250, blank=True, null=True)
+    x_currency_code = models.CharField(max_length=250, blank=True, null=True)
+    x_franchise = models.CharField(max_length=250, blank=True, null=True)
+    x_transaction_date = models.CharField(max_length=250, blank=True,
+                                          null=True)
+    x_approval_code = models.CharField(max_length=250, blank=True, null=True)
+    x_transaction_id = models.CharField(max_length=250, blank=True, null=True)
+    x_ref_payco = models.CharField(max_length=250, blank=True, null=True)
+    x_cod_response = models.CharField(max_length=250, blank=True, null=True)
+    x_cod_transaction_state = models.CharField(max_length=250, blank=True,
+                                               null=True)
+    x_transaction_state = models.CharField(max_length=250, blank=True,
+                                           null=True)
+    x_signature = models.CharField(max_length=250, blank=True, null=True)
+    x_response = models.CharField(max_length=250, blank=True, null=True)
+    x_response_reason_text = models.CharField(max_length=250, blank=True,
+                                              null=True)
+    x_extra1 = models.CharField(max_length=250, blank=True, null=True)
+    x_extra2 = models.CharField(max_length=250, blank=True, null=True)
+    x_extra3 = models.CharField(max_length=250, blank=True, null=True)
+    x_amount = models.CharField(max_length=250, blank=True, null=True)
+    x_amount_country = models.CharField(max_length=250, blank=True, null=True)
+    x_bank_name = models.CharField(max_length=250, blank=True, null=True)
+    x_cardnumber = models.CharField(max_length=250, blank=True, null=True)
+    x_quotas = models.CharField(max_length=250, blank=True, null=True)
+    x_fecha_transaccion = models.CharField(max_length=250, blank=True,
+                                           null=True)
+    x_errorcode = models.CharField(max_length=250, blank=True, null=True)
+    x_customer_doctype = models.CharField(max_length=250, blank=True,
+                                          null=True)
+    x_customer_lastname = models.CharField(max_length=250, blank=True,
+                                           null=True)
+    x_customer_name = models.CharField(max_length=250, blank=True, null=True)
+    x_customer_email = models.CharField(max_length=250, blank=True, null=True)
+    x_customer_phone = models.CharField(max_length=250, blank=True, null=True)
+    x_customer_country = models.CharField(max_length=250, blank=True,
+                                          null=True)
+    x_customer_city = models.CharField(max_length=250, blank=True, null=True)
+    x_customer_address = models.CharField(max_length=250, blank=True,
+                                          null=True)
+    x_customer_ip = models.CharField(max_length=250, blank=True, null=True)
+    x_test_request = models.CharField(max_length=250, blank=True, null=True)
+
+    class Meta:
+        abstract = True
+        verbose_name = _('Person Recharge')
+        verbose_name_plural = _('Person Recharges')
+
+    def __str__(self):
+        return "%s"%self.id

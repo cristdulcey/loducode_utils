@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from loducode_utils.models import City
+from loducode_utils.models import City, PaymentRecord
 
 
 class ReadOnlyAdmin(admin.ModelAdmin):
