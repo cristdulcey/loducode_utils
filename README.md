@@ -28,6 +28,15 @@ Basic components for the development of loducode s.a.s.
     - LogoutView
     - ForgetPasswordView
 
+## Commands
+
+- python setup.py sdist bdist_wheel
+- twine upload --repository pypi dist/loducode_utils-0.0.7*
+
+####Version 0.0.8
+- change translation model payment record
+- new view data epayco
+
 ####Version 0.0.7
 new model payment record
 

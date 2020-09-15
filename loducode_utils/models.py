@@ -155,8 +155,6 @@ class PaymentRecord(Audit):
 
     class Meta:
         abstract = True
-        verbose_name = _('Person Recharge')
-        verbose_name_plural = _('Person Recharges')
 
     def __str__(self):
         return "%s"%self.id
