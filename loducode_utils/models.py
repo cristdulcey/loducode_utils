@@ -47,12 +47,12 @@ class Audit(models.Model):
 
     def save(self, *args, **kwargs):
         user = get_current_user()
-        if self.created_at is None and not user.is_anonymous:
-            self.created_by = user
-            self.modified_by = user
-        elif not user.is_anonymous:
-            self.modified_by = user
-
+        if user:
+            if self.created_at is None and not user.is_anonymous:
+                self.created_by = user
+                self.modified_by = user
+            elif not user.is_anonymous:
+                self.modified_by = user
         super(Audit, self).save(*args, **kwargs)
 
 class City(Audit):
