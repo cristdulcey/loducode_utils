@@ -4,14 +4,14 @@ Basic components for the development of loducode s.a.s.
 
 ### install
 
-`pip install loducode_utils==0.0.11`
+`pip install loducode_utils==0.0.12`
 
 ## functionalities
 
 - **Admin**
-    - ReadOnlyAdmin
-    - ReadOnlyStackedInline
-    - ReadOnlyTabularInline
+    - AuditAdmin
+    - AuditStackedInline
+    - AuditTabularInline
 - **Models**
     - Audit
     - City  
