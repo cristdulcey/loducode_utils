@@ -4,7 +4,7 @@ Basic components for the development of loducode s.a.s.
 
 ### install
 
-`pip install loducode_utils==0.0.13`
+`pip install loducode_utils==0.0.14`
 
 ## functionalities
 
@@ -37,6 +37,8 @@ entrar a la carpeta loducode_utils y correr
 - django-admin makemessages
 - django-admin compilemessages
 
+####Version 0.0.14
+- Import export cities
 
 ####Version 0.0.13
 - Change translate state for departament

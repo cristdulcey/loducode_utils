@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from loducode_utils.models import City, PaymentRecord
-
+from import_export.admin import ImportExportModelAdmin
 
 class AuditAdmin(admin.ModelAdmin):
     __readonly_audit_fields = (
@@ -43,7 +43,7 @@ class ReadOnlyTabularInline(AuditTabularInline):
     pass
 
 
-class CityAdmin(AuditAdmin):
+class CityAdmin(ImportExportModelAdmin ,AuditAdmin):
     list_display = ("name","state")
     list_display_links = ("name","state")
     list_filter = ("state",)
