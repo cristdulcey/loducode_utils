@@ -93,7 +93,7 @@ class City(Audit):
         ("Bogotá d C.", "Bogotá d C."),
     )
     name = models.CharField(_('name'), max_length=100)
-    state = models.CharField(_('state'), max_length=100, choices=STATES)
+    state = models.CharField(_('departament'), max_length=100, choices=STATES)
 
     class Meta:
         verbose_name = _('city')

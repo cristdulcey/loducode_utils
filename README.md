@@ -4,7 +4,7 @@ Basic components for the development of loducode s.a.s.
 
 ### install
 
-`pip install loducode_utils==0.0.12`
+`pip install loducode_utils==0.0.13`
 
 ## functionalities
 
@@ -31,11 +31,15 @@ Basic components for the development of loducode s.a.s.
 ## Commands
 
 - python setup.py sdist bdist_wheel
-- twine upload --repository pypi dist/loducode_utils-0.0.11*
+- twine upload --repository pypi dist/loducode_utils-0.0.13*
 
 entrar a la carpeta loducode_utils y correr
 - django-admin makemessages
 - django-admin compilemessages
+
+
+####Version 0.0.13
+- Change translate state for departament
 
 ####Version 0.0.11
 - bug save user in save model audit
