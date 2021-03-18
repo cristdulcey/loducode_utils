@@ -4,7 +4,7 @@ Basic components for the development of loducode s.a.s.
 
 ### install
 
-`pip install loducode_utils==0.0.17`
+`pip install loducode_utils==0.0.19`
 
 ## functionalities
 
@@ -31,11 +31,18 @@ Basic components for the development of loducode s.a.s.
 ## Commands
 
 - python setup.py sdist bdist_wheel
-- twine upload --repository pypi dist/loducode_utils-0.0.16*
+- twine upload --repository pypi dist/loducode_utils-0.0.19*
 
 entrar a la carpeta loducode_utils y correr
 - django-admin makemessages
 - django-admin compilemessages
+
+
+####Version 0.0.18
+- change models  
+
+####Version 0.0.18
+- implment get_user_model()
 
 ####Version 0.0.17
 - Migration 0004
