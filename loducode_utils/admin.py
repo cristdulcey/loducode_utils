@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from loducode_utils.models import City, PaymentRecord
+from loducode_utils.models import City
 from import_export.admin import ImportExportModelAdmin
 
 class AuditAdmin(admin.ModelAdmin):

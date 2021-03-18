@@ -1,12 +1,13 @@
 import uuid
 
 from crum import get_current_user
-from django.contrib.auth.models import User
-from django.db import models
+from django.conf import settings
+from django.db.models import Model, UUIDField, DateTimeField, ForeignKey, CASCADE, CharField, BooleanField
 from django.utils.translation import ugettext_lazy as _
 
-class Audit(models.Model):
-    """Audit Model
+class Audit(Model):
+    
+    '''Audit Model
     AuditModel acts as an abstract base class from which every
     other model in the project will inherit. This class provides
     every table with the following attributes:
@@ -14,36 +15,37 @@ class Audit(models.Model):
         + modified_at (DateTime): Stores the last datetime the object was modified.
         + created_by (ForeignKey): Stores the user who created the object.
         + modified_by (ForeignKey): Stores the user who modified the object.
-    """
-
-    created_at = models.DateTimeField(
+    '''
+    id: UUIDField = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    created_at = DateTimeField(
         auto_now_add=True,
         verbose_name=_('creation date'),
-        help_text=_("date when the object was created"),
-        blank=True, null=True
+        help_text=_('date when the object was created'),
+        db_index=True
     )
-    modified_at = models.DateTimeField(
+    modified_at = DateTimeField(
         auto_now=True,
         verbose_name=_('update date'),
-        help_text=_("date when the object was modified"),
+        help_text=_('date when the object was modified'),
     )
-    created_by = models.ForeignKey(
-        User, on_delete=models.CASCADE,
+    created_by = ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=CASCADE,
         related_name='%(class)s_created_by',
         null=True, blank=True,
         verbose_name=_('creation user'),
-        help_text=_("user who created the object"),
+        help_text=_('user who created the object'),
     )
-    modified_by = models.ForeignKey(
-        User, on_delete=models.CASCADE,
+    modified_by = ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=CASCADE,
         related_name='%(class)s_modified_by',
         null=True, blank=True,
         verbose_name=_('update user'),
-        help_text=_("user who performed the update"),
+        help_text=_('user who performed the update'),
     )
 
     class Meta:
         abstract = True
+        ordering = ['-created_at']
 
     def save(self, *args, **kwargs):
         user = get_current_user()
@@ -57,43 +59,44 @@ class Audit(models.Model):
 
 class City(Audit):
     STATES = (
-        ("", "---------"),
-        ("Amazonas", "Amazonas"),
-        ("Antioquia", "Antioquia"),
-        ("Arauca", "Arauca"),
-        ("Atlántico", "Atlántico"),
-        ("Bolívar", "Bolívar"),
-        ("Boyacá", "Boyacá"),
-        ("Caldas", "Caldas"),
-        ("Caquetá", "Caquetá"),
-        ("Casanare", "Casanare"),
-        ("Cauca", "Cauca"),
-        ("Cesar", "Cesar"),
-        ("Chocó", "Chocó"),
-        ("Córdoba", "Córdoba"),
-        ("Cundinamarca", "Cundinamarca"),
-        ("Guainía", "Guainía"),
-        ("Guaviare", "Guaviare"),
-        ("Huila", "Huila"),
-        ("La Guajira", "La Guajira"),
-        ("Magdalena", "Magdalena"),
-        ("Meta", "Meta"),
-        ("Nariño", "Nariño"),
-        ("Norte de Santander", "Norte de Santander"),
-        ("Putumayo", "Putumayo"),
-        ("Quindío", "Quindío"),
-        ("Risaralda", "Risaralda"),
-        ("San Andrés y Providencia", "San Andrés y Providencia"),
-        ("Santander", "Santander"),
-        ("Sucre", "Sucre"),
-        ("Tolima", "Tolima"),
-        ("Valle del Cauca", "Valle del Cauca"),
-        ("Vaupés", "Vaupés"),
-        ("Vichada", "Vichada"),
-        ("Bogotá d C.", "Bogotá d C."),
+        ('', '---------'),
+        ('Amazonas', 'Amazonas'),
+        ('Antioquia', 'Antioquia'),
+        ('Arauca', 'Arauca'),
+        ('Atlántico', 'Atlántico'),
+        ('Bolívar', 'Bolívar'),
+        ('Boyacá', 'Boyacá'),
+        ('Caldas', 'Caldas'),
+        ('Caquetá', 'Caquetá'),
+        ('Casanare', 'Casanare'),
+        ('Cauca', 'Cauca'),
+        ('Cesar', 'Cesar'),
+        ('Chocó', 'Chocó'),
+        ('Córdoba', 'Córdoba'),
+        ('Cundinamarca', 'Cundinamarca'),
+        ('Guainía', 'Guainía'),
+        ('Guaviare', 'Guaviare'),
+        ('Huila', 'Huila'),
+        ('La Guajira', 'La Guajira'),
+        ('Magdalena', 'Magdalena'),
+        ('Meta', 'Meta'),
+        ('Nariño', 'Nariño'),
+        ('Norte de Santander', 'Norte de Santander'),
+        ('Putumayo', 'Putumayo'),
+        ('Quindío', 'Quindío'),
+        ('Risaralda', 'Risaralda'),
+        ('San Andrés y Providencia', 'San Andrés y Providencia'),
+        ('Santander', 'Santander'),
+        ('Sucre', 'Sucre'),
+        ('Tolima', 'Tolima'),
+        ('Valle del Cauca', 'Valle del Cauca'),
+        ('Vaupés', 'Vaupés'),
+        ('Vichada', 'Vichada'),
+        ('Bogotá d C.', 'Bogotá d C.'),
     )
-    name = models.CharField(_('name'), max_length=100)
-    state = models.CharField(_('departament'), max_length=100, choices=STATES)
+    name: str = CharField(verbose_name=_('name'), max_length=100)
+    state: str = CharField(verbose_name=_('departament'), max_length=100, choices=STATES)
+    active: bool = BooleanField(verbose_name=_('active'),default=True)
 
     class Meta:
         verbose_name = _('city')
@@ -104,57 +107,56 @@ class City(Audit):
 
 
 class PaymentRecord(Audit):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    x_cust_id_cliente = models.CharField(max_length=250, blank=True, null=True)
-    x_description = models.CharField(max_length=250, blank=True, null=True)
-    x_amount_ok = models.CharField(max_length=250, blank=True, null=True)
-    x_id_invoice = models.CharField(max_length=250, blank=True, null=True)
-    x_amount_base = models.CharField(max_length=250, blank=True, null=True)
-    x_tax = models.CharField(max_length=250, blank=True, null=True)
-    x_currency_code = models.CharField(max_length=250, blank=True, null=True)
-    x_franchise = models.CharField(max_length=250, blank=True, null=True)
-    x_transaction_date = models.CharField(max_length=250, blank=True,
+    x_cust_id_cliente = CharField(max_length=250, blank=True, null=True)
+    x_description = CharField(max_length=250, blank=True, null=True)
+    x_amount_ok = CharField(max_length=250, blank=True, null=True)
+    x_id_invoice = CharField(max_length=250, blank=True, null=True)
+    x_amount_base = CharField(max_length=250, blank=True, null=True)
+    x_tax = CharField(max_length=250, blank=True, null=True)
+    x_currency_code = CharField(max_length=250, blank=True, null=True)
+    x_franchise = CharField(max_length=250, blank=True, null=True)
+    x_transaction_date = CharField(max_length=250, blank=True,
                                           null=True)
-    x_approval_code = models.CharField(max_length=250, blank=True, null=True)
-    x_transaction_id = models.CharField(max_length=250, blank=True, null=True)
-    x_ref_payco = models.CharField(max_length=250, blank=True, null=True)
-    x_cod_response = models.CharField(max_length=250, blank=True, null=True)
-    x_cod_transaction_state = models.CharField(max_length=250, blank=True,
+    x_approval_code = CharField(max_length=250, blank=True, null=True)
+    x_transaction_id = CharField(max_length=250, blank=True, null=True)
+    x_ref_payco = CharField(max_length=250, blank=True, null=True)
+    x_cod_response = CharField(max_length=250, blank=True, null=True)
+    x_cod_transaction_state = CharField(max_length=250, blank=True,
                                                null=True)
-    x_transaction_state = models.CharField(max_length=250, blank=True,
+    x_transaction_state = CharField(max_length=250, blank=True,
                                            null=True)
-    x_signature = models.CharField(max_length=250, blank=True, null=True)
-    x_response = models.CharField(max_length=250, blank=True, null=True)
-    x_response_reason_text = models.CharField(max_length=250, blank=True,
+    x_signature = CharField(max_length=250, blank=True, null=True)
+    x_response = CharField(max_length=250, blank=True, null=True)
+    x_response_reason_text = CharField(max_length=250, blank=True,
                                               null=True)
-    x_extra1 = models.CharField(max_length=250, blank=True, null=True)
-    x_extra2 = models.CharField(max_length=250, blank=True, null=True)
-    x_extra3 = models.CharField(max_length=250, blank=True, null=True)
-    x_amount = models.CharField(max_length=250, blank=True, null=True)
-    x_amount_country = models.CharField(max_length=250, blank=True, null=True)
-    x_bank_name = models.CharField(max_length=250, blank=True, null=True)
-    x_cardnumber = models.CharField(max_length=250, blank=True, null=True)
-    x_quotas = models.CharField(max_length=250, blank=True, null=True)
-    x_fecha_transaccion = models.CharField(max_length=250, blank=True,
+    x_extra1 = CharField(max_length=250, blank=True, null=True)
+    x_extra2 = CharField(max_length=250, blank=True, null=True)
+    x_extra3 = CharField(max_length=250, blank=True, null=True)
+    x_amount = CharField(max_length=250, blank=True, null=True)
+    x_amount_country = CharField(max_length=250, blank=True, null=True)
+    x_bank_name = CharField(max_length=250, blank=True, null=True)
+    x_cardnumber = CharField(max_length=250, blank=True, null=True)
+    x_quotas = CharField(max_length=250, blank=True, null=True)
+    x_fecha_transaccion = CharField(max_length=250, blank=True,
                                            null=True)
-    x_errorcode = models.CharField(max_length=250, blank=True, null=True)
-    x_customer_doctype = models.CharField(max_length=250, blank=True,
+    x_errorcode = CharField(max_length=250, blank=True, null=True)
+    x_customer_doctype = CharField(max_length=250, blank=True,
                                           null=True)
-    x_customer_lastname = models.CharField(max_length=250, blank=True,
+    x_customer_lastname = CharField(max_length=250, blank=True,
                                            null=True)
-    x_customer_name = models.CharField(max_length=250, blank=True, null=True)
-    x_customer_email = models.CharField(max_length=250, blank=True, null=True)
-    x_customer_phone = models.CharField(max_length=250, blank=True, null=True)
-    x_customer_country = models.CharField(max_length=250, blank=True,
+    x_customer_name = CharField(max_length=250, blank=True, null=True)
+    x_customer_email = CharField(max_length=250, blank=True, null=True)
+    x_customer_phone = CharField(max_length=250, blank=True, null=True)
+    x_customer_country = CharField(max_length=250, blank=True,
                                           null=True)
-    x_customer_city = models.CharField(max_length=250, blank=True, null=True)
-    x_customer_address = models.CharField(max_length=250, blank=True,
+    x_customer_city = CharField(max_length=250, blank=True, null=True)
+    x_customer_address = CharField(max_length=250, blank=True,
                                           null=True)
-    x_customer_ip = models.CharField(max_length=250, blank=True, null=True)
-    x_test_request = models.CharField(max_length=250, blank=True, null=True)
+    x_customer_ip = CharField(max_length=250, blank=True, null=True)
+    x_test_request = CharField(max_length=250, blank=True, null=True)
 
     class Meta:
         abstract = True
 
     def __str__(self):
-        return "%s"%self.id
+        return '%s'%self.id
