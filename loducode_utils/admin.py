@@ -1,7 +1,9 @@
 from django.contrib import admin
 
-from loducode_utils.models.city import City
+
 from import_export.admin import ImportExportModelAdmin
+from loducode_utils.models.city import City
+
 
 class AuditAdmin(admin.ModelAdmin):
     __readonly_audit_fields = (
