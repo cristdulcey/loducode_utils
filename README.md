@@ -4,7 +4,7 @@ Basic components for the development of loducode s.a.s.
 
 ### install
 
-`pip install loducode_utils==0.0.16`
+`pip install loducode_utils==0.0.17`
 
 ## functionalities
 
@@ -36,6 +36,9 @@ Basic components for the development of loducode s.a.s.
 entrar a la carpeta loducode_utils y correr
 - django-admin makemessages
 - django-admin compilemessages
+
+####Version 0.0.17
+- Migration 0004
 
 ####Version 0.0.16
 - Migration 0003
