@@ -97,4 +97,4 @@ msgstr "Tu nueva contraseña es:"
 
 #: loducode_utils/views_api.py:127 loducode_utils/views_api.py:130
 msgid "the new password has been send to Email."
-msgstr "la nueva contraseña ha sido enviada a correo electrónico."
+msgstr "La nueva contraseña ha sido enviada al correo electrónico."
