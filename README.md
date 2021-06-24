@@ -4,7 +4,7 @@ Basic components for the development of loducode s.a.s.
 
 ### install
 
-`pip install loducode_utils==1.2`
+`pip install loducode_utils==1.3.1`
 
 ## functionalities
 
@@ -33,11 +33,20 @@ Basic components for the development of loducode s.a.s.
 ## Commands
 
 - python setup.py sdist bdist_wheel
-- twine upload --repository pypi dist/loducode_utils-1.2*
+- twine upload --repository pypi dist/loducode_utils-1.3.1*
 
 entrar a la carpeta loducode_utils y correr
 - django-admin makemessages
 - django-admin compilemessages
+
+####Version 1.3
+- requirement slackclient bug
+
+####Version 1.3
+- requirement slack
+
+####Version 1.2
+- new tash send message slack
 
 ####Version 1.1
 - new method send message slack
