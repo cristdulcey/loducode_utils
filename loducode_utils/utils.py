@@ -1,4 +1,10 @@
+from typing import Optional
+
+from django.conf import settings
 from django.views.generic import ListView
+
+from slack import WebClient
+from slack.errors import SlackApiError
 
 
 class PaginatedListView(ListView):
@@ -34,7 +40,7 @@ class PaginatedListView(ListView):
         return context
 
 
-def confirmation_pay(model,request):
+def confirmation_pay(model, request):
     data = request.POST
     id = data.get("x_extra1")
     if request.method == 'POST' and id:
@@ -84,3 +90,31 @@ def confirmation_pay(model,request):
             return None
     else:
         return None
+
+
+def slack_send_message(channel: str, message: str, id_user: str = '') -> str:
+    '''
+    send messages slack
+    :param channel: channel for send
+    :param message: message send
+    :param id_user: id user slack
+    :return: (str) response
+    '''
+    slack_token = settings.BOT_USER_ACCESS_TOKEN
+    client = WebClient(token=slack_token)
+    try:
+        if id_user != '':
+            response = client.chat_postEphemeral(
+                channel=channel,
+                text=message,
+                user=id_user
+            )
+        else:
+            response = client.chat_postMessage(
+                channel=channel,
+                text=message
+            )
+    except SlackApiError as e:
+        response = response
+        assert e.response["error"]
+    return response

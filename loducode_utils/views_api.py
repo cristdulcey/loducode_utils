@@ -2,18 +2,23 @@ import json
 import random
 import string
 
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.utils.translation import ugettext_lazy as _
+
 from rest_framework import renderers, status
 from rest_framework.authtoken.views import ObtainAuthToken
-from django.utils.translation import ugettext_lazy as _
 from rest_framework.compat import coreapi, coreschema
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.schemas import ManualSchema
 from rest_framework.views import APIView, exception_handler
 
-from loducode_utils.tasks import send_mail_task
+from slack import WebClient
+from slack.errors import SlackApiError
+
+from .tasks import send_mail_task
 
 
 class ObtainCustomAuthToken(ObtainAuthToken):
@@ -156,3 +161,14 @@ def handler500(exception, context):
         status=status_code
     )
     return response
+
+
+def members_view(request):
+    slack_token = settings.BOT_USER_ACCESS_TOKEN
+    client = WebClient(token=slack_token)
+    try:
+        listclient = client.users_list()
+        users = listclient["members"]
+    except SlackApiError as e:
+        users = e.response
+    return HttpResponse(users,status=200)

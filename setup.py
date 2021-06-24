@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setup(
     name='loducode_utils',
     packages=['loducode_utils','loducode_utils.migrations'],  # this must be the same as the name above
-    version='1.0',
+    version='1.1',
     description='Basic components for the development of loducode s.a.s.',
     long_description=long_description,
     long_description_content_type="text/markdown",

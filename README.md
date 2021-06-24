@@ -4,7 +4,7 @@ Basic components for the development of loducode s.a.s.
 
 ### install
 
-`pip install loducode_utils==1.0`
+`pip install loducode_utils==1.1`
 
 ## functionalities
 
@@ -23,6 +23,7 @@ Basic components for the development of loducode s.a.s.
     - /api/forget/
 - **Utils**
     - PaginatedListView
+    - slack_send_message
 - **Views api**
     - ObtainCustomAuthToken
     - LogoutView
@@ -36,6 +37,9 @@ Basic components for the development of loducode s.a.s.
 entrar a la carpeta loducode_utils y correr
 - django-admin makemessages
 - django-admin compilemessages
+
+####Version 1.1
+- new method send message slack
 
 ####Version 1.0
 - new schema of migrations.
