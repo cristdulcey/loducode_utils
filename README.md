@@ -4,7 +4,7 @@ Basic components for the development of loducode s.a.s.
 
 ### install
 
-`pip install loducode_utils==1.1`
+`pip install loducode_utils==1.2`
 
 ## functionalities
 
@@ -17,6 +17,7 @@ Basic components for the development of loducode s.a.s.
     - City  
 - **Tasks**
     - send_mail_task(email, subject, message)
+    - slack_send_message_task(channel: str, message: str, id_user: str = '')
 - **Urls Api**
     - /api/token/
     - /api/logout/
@@ -32,7 +33,7 @@ Basic components for the development of loducode s.a.s.
 ## Commands
 
 - python setup.py sdist bdist_wheel
-- twine upload --repository pypi dist/loducode_utils-1.0*
+- twine upload --repository pypi dist/loducode_utils-1.2*
 
 entrar a la carpeta loducode_utils y correr
 - django-admin makemessages
