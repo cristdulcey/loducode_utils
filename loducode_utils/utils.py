@@ -1,4 +1,4 @@
-from typing import Optional
+import json
 
 from django.conf import settings
 from django.views.generic import ListView
@@ -104,17 +104,18 @@ def slack_send_message(channel: str, message: str, id_user: str = '') -> str:
     client = WebClient(token=slack_token)
     try:
         if id_user != '':
-            response = client.chat_postEphemeral(
+            res = client.chat_postEphemeral(
                 channel=channel,
                 text=message,
                 user=id_user
             )
         else:
-            response = client.chat_postMessage(
+            res = client.chat_postMessage(
                 channel=channel,
                 text=message
             )
+        response = json.dumps(res, indent=4)
     except SlackApiError as e:
-        response = response
+        response = e.response["error"]
         assert e.response["error"]
     return response
