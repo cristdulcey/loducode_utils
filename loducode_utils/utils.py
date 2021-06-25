@@ -114,7 +114,7 @@ def slack_send_message(channel: str, message: str, id_user: str = '') -> str:
                 channel=channel,
                 text=message
             )
-        response = json.dumps(res, indent=4)
+        response = json.dumps(res.data, indent=4)
     except SlackApiError as e:
         response = e.response["error"]
         assert e.response["error"]
