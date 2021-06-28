@@ -2,7 +2,7 @@ import uuid
 
 from crum import get_current_user
 from django.contrib.auth import get_user_model
-from django.db.models import Model, UUIDField, DateTimeField, ForeignKey, CASCADE
+from django.db.models import Model, UUIDField, DateTimeField, ForeignKey, SET_NULL
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -29,14 +29,14 @@ class Audit(Model):
         help_text=_('date when the object was modified'),
     )
     created_by = ForeignKey(
-        get_user_model(), on_delete=CASCADE,
+        get_user_model(), on_delete=SET_NULL,
         related_name='%(class)s_created_by',
         null=True, blank=True,
         verbose_name=_('creation user'),
         help_text=_('user who created the object'),
     )
     modified_by = ForeignKey(
-        get_user_model(), on_delete=CASCADE,
+        get_user_model(), on_delete=SET_NULL,
         related_name='%(class)s_modified_by',
         null=True, blank=True,
         verbose_name=_('update user'),

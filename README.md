@@ -4,7 +4,7 @@ Basic components for the development of loducode s.a.s.
 
 ### install
 
-`pip install loducode_utils==1.4`
+`pip install loducode_utils==1.5`
 
 ## functionalities
 
@@ -33,11 +33,14 @@ Basic components for the development of loducode s.a.s.
 ## Commands
 
 - python setup.py sdist bdist_wheel
-- twine upload --repository pypi dist/loducode_utils-1.4*
+- twine upload --repository pypi dist/loducode_utils-1.5*
 
 entrar a la carpeta loducode_utils y correr
 - django-admin makemessages
 - django-admin compilemessages
+
+####Version 1.5
+- serializer audit
 
 ####Version 1.4
 - serializer cities
