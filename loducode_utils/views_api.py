@@ -14,11 +14,46 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.schemas import ManualSchema
 from rest_framework.views import APIView, exception_handler
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets
 
 from slack import WebClient
 from slack.errors import SlackApiError
 
 from .tasks import send_mail_task
+from loducode_utils.models.city import City
+from loducode_utils.serializers import CitySerializer
+
+
+class CityViewSetPagination(PageNumberPagination):
+    page_size_query_param = 'page_size'
+    page_size = City.objects.count()
+    max_page_size = page_size
+
+
+class CityViewSet(viewsets.ModelViewSet):
+    queryset = City.objects.all().order_by('name')
+    serializer_class = CitySerializer
+    permission_classes = [AllowAny]
+    filter_backends = [SearchFilter, OrderingFilter, DjangoFilterBackend]
+    search_fields = ["name", ]
+    ordering_fields = ["name", "state"]
+    filter_fields = ["state"]
+    http_method_names = ['get']
+    pagination_class = CityViewSetPagination
+
+
+CityViewSet.__doc__ = """
+    retrieve:
+       {RETRIEVE}
+    list:
+       {LIST} 
+    """.format(
+    RETRIEVE=_("Returns a specific object of the city model."),
+    LIST=_("Returns a detail list of all cities."),
+)
 
 
 class ObtainCustomAuthToken(ObtainAuthToken):
@@ -73,6 +108,7 @@ LogoutView.__doc__ = """{RETRIEVE}""".format(
     RETRIEVE=_("Service to log out."),
 )
 
+
 class ForgetPasswordView(APIView):
     permission_classes = (AllowAny,)
     renderer_classes = (renderers.JSONRenderer,)
@@ -126,7 +162,7 @@ class ForgetPasswordView(APIView):
                 pass
             send_mail_task.delay(
                 email=user_detail.email,
-                subject= _("Your new password is:"),
+                subject=_("Your new password is:"),
                 message=message
             )
             return Response({"message": _('the new password has been send to Email.')},
@@ -135,9 +171,11 @@ class ForgetPasswordView(APIView):
             return Response({"message": _('the new password has been send to Email.')},
                             status=status.HTTP_202_ACCEPTED)
 
+
 ForgetPasswordView.__doc__ = """{RETRIEVE}""".format(
     RETRIEVE=_('Service to forget password. ** {"username": "user1"} **'),
 )
+
 
 def handler500(exception, context):
     response = exception_handler(exception, context)
@@ -171,4 +209,4 @@ def members_view(request):
         users = listclient["members"]
     except SlackApiError as e:
         users = e.response
-    return HttpResponse(users,status=200)
+    return HttpResponse(users, status=200)
