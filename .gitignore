@@ -10,7 +10,5 @@ venv
 build/
 dist/
 loducode_utils.egg-info/
-
 manage.py
-
 lodu/
