@@ -1,4 +1,4 @@
-from django.db.models import  CharField, BooleanField
+from django.db.models import  CharField, BooleanField, FileField
 from django.utils.translation import ugettext_lazy as _
 
 from loducode_utils.models.audit import Audit
@@ -44,6 +44,7 @@ class City(Audit):
     name: str = CharField(verbose_name=_('name'), max_length=100)
     state: str = CharField(verbose_name=_('departament'), max_length=100, choices=STATES)
     active: bool = BooleanField(verbose_name=_('active'),default=True)
+    icon: str = FileField(blank=True, null=True, upload_to='cities/', verbose_name=_('icon'))
 
     class Meta:
         verbose_name = _('city')
