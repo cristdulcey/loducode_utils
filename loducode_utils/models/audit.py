@@ -56,3 +56,6 @@ class Audit(Model):
             elif not user.is_anonymous:
                 self.modified_by = user
         super(Audit, self).save(*args, **kwargs)
+
+    def _id(self) -> str:
+        return str(self.id).split('-')[4]

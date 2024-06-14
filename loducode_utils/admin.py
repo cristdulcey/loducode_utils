@@ -1,13 +1,12 @@
 from django.contrib import admin
 
-
 from import_export.admin import ImportExportModelAdmin
 from loducode_utils.models.city import City
 
 
 class AuditAdmin(admin.ModelAdmin):
     __readonly_audit_fields = (
-        'created_at', 'modified_at', 'created_by', 'modified_by'
+        '_id', 'created_at', 'modified_at', 'created_by', 'modified_by'
     )
 
     def get_readonly_fields(self, request, obj=None):
@@ -15,9 +14,10 @@ class AuditAdmin(admin.ModelAdmin):
         readonly_fields = readonly_fields + self.__readonly_audit_fields
         return readonly_fields
 
+
 class AuditStackedInline(admin.StackedInline):
     __readonly_audit_fields = (
-        'created_at', 'modified_at', 'created_by', 'modified_by'
+        '_id', 'created_at', 'modified_at', 'created_by', 'modified_by'
     )
 
     def get_readonly_fields(self, request, obj=None):
@@ -25,9 +25,10 @@ class AuditStackedInline(admin.StackedInline):
         readonly_fields = readonly_fields + self.__readonly_audit_fields
         return readonly_fields
 
+
 class AuditTabularInline(admin.TabularInline):
     __readonly_audit_fields = (
-        'created_at', 'modified_at', 'created_by', 'modified_by'
+        '_id', 'created_at', 'modified_at', 'created_by', 'modified_by'
     )
 
     def get_readonly_fields(self, request, obj=None):
@@ -35,20 +36,24 @@ class AuditTabularInline(admin.TabularInline):
         readonly_fields = readonly_fields + self.__readonly_audit_fields
         return readonly_fields
 
+
 class ReadOnlyAdmin(AuditAdmin):
     pass
 
+
 class ReadOnlyStackedInline(AuditStackedInline):
     pass
+
 
 class ReadOnlyTabularInline(AuditTabularInline):
     pass
 
 
-class CityAdmin(ImportExportModelAdmin ,AuditAdmin):
-    list_display = ("name","state")
-    list_display_links = ("name","state")
+class CityAdmin(ImportExportModelAdmin, AuditAdmin):
+    list_display = ("name", "state")
+    list_display_links = ("name", "state")
     list_filter = ("state",)
     search_fields = ("name",)
+
 
 admin.site.register(City, CityAdmin)
