@@ -58,4 +58,6 @@ class Audit(Model):
         super(Audit, self).save(*args, **kwargs)
 
     def _id(self) -> str:
-        return str(self.id).split('-')[4]
+        if self.id:
+            return str(self.id).split('-')[4]
+        return ''
