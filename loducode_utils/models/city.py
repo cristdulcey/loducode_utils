@@ -1,5 +1,8 @@
 from django.db.models import  CharField, BooleanField, FileField
-from django.utils.translation import ugettext_lazy as _
+try:
+    from django.utils.translation import ugettext_lazy as _
+except ImportError:
+    from django.utils.translation import gettext_lazy as _
 
 from loducode_utils.models.audit import Audit
 

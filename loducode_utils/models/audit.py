@@ -3,7 +3,10 @@ import uuid
 from crum import get_current_user
 from django.contrib.auth import get_user_model
 from django.db.models import Model, UUIDField, DateTimeField, ForeignKey, SET_NULL
-from django.utils.translation import ugettext_lazy as _
+try:
+    from django.utils.translation import ugettext_lazy as _
+except ImportError:
+    from django.utils.translation import gettext_lazy as _
 
 
 class Audit(Model):
