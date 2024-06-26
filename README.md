@@ -4,7 +4,7 @@ Basic components for the development of loducode s.a.s.
 
 ### install
 
-`pip install loducode_utils==1.5.9`
+`pip install loducode_utils==1.5.10`
 
 ## functionalities
 
@@ -34,13 +34,18 @@ Basic components for the development of loducode s.a.s.
 
 ```
   python setup.py sdist bdist_wheel
-  twine upload --repository pypi dist/loducode_utils-1.5.9*
+  twine upload --repository pypi dist/loducode_utils-1.5.10*
 ```
 
 entrar a la carpeta loducode_utils y correr
 
 - django-admin makemessages
 - django-admin compilemessages
+
+#### Version 1.5.10
+
+- fix from  call ugettext_lazy to gettext_lazy
+
 
 #### Version 1.5.9
 

@@ -5,7 +5,10 @@ import string
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.utils.translation import ugettext_lazy as _
+try:
+    from django.utils.translation import ugettext_lazy as _
+except ImportError:
+    from django.utils.translation import gettext_lazy as _
 
 from rest_framework import renderers, status
 from rest_framework.authtoken.views import ObtainAuthToken
