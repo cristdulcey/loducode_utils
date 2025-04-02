@@ -16,7 +16,7 @@ class Audit(Model):
         + created_by (ForeignKey): Stores the user who created the object.
         + modified_by (ForeignKey): Stores the user who modified the object.
     '''
-    id: UUIDField = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    # id: UUIDField = UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_at = DateTimeField(
         auto_now_add=True,
         verbose_name=_('creation date'),
